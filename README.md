@@ -69,7 +69,7 @@ Gestion des erreurs lors du calcul ou de la génération
 ```python
   prompt = f"{SECURE_PROMPT}\nQuestion: {question}"
 response = llm.chat(prompt).content
-
+```
 ### -Dépendances (requirements.txt)
 fastapi
 pydantic
