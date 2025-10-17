@@ -26,12 +26,16 @@ L’objectif de cette version est d’intégrer des garde-fous et une sanitation
  ## 2. Étapes d’intégration
 ### - Créer l’utilitaire de sanitation (utils.py)
 
-- Fonction principale : sanitize_input(user_input: str) → str
-
+- Fonction principale :
+  ```python
+  sanitize_input(user_input: str) → str
+ ```
 - Nettoie les balises HTML, supprime les espaces inutiles, limite la longueur.
   **code:**
+  ```python
   from utils import sanitize_input
   clean_question = sanitize_input(user_question)
+   ```
 ### - Modifier le backend FastAPI (main.py)
 
 Appeler sanitize_input avant d’envoyer la question à l’agent
@@ -40,6 +44,7 @@ Filtrer le contenu sensible avant de renvoyer la réponse
 
 Gérer les erreurs globalement
 **code:**
+```python
 @app.post("/ask")
 def ask_question(data: Question):
     question = sanitize_input(data.question)
@@ -52,15 +57,18 @@ def ask_question(data: Question):
         return {"answer": response}
     except Exception:
         return {"answer": "Désolé, je ne peux pas répondre à cette question pour le moment."}
+        ```
 ### -Filtrage des sources (tools.py)
 Limiter les résultats DuckDuckGo aux sources fiables (Wikipedia, .edu)
 
 Vérifier les résultats Wikipedia pour le contenu sensible
 **code:**
+```python
 safe_results = safe_duckduckgo_search(query)
 wiki_result = safe_wikipedia_query(query)
+```
 ### - Agent IA avec prompt de sécurité (agent.py)
-jout d’un prompt global pour éviter les contenus offensants ou sensibles
+Ajout d’un prompt global pour éviter les contenus offensants ou sensibles
 
 Validation des calculs mathématiques via LLMMathChain
 
