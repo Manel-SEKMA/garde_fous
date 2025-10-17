@@ -5,22 +5,22 @@ L’objectif de cette version est d’intégrer des garde-fous et une sanitation
 
 Ce projet contient un agent IA backend capable de répondre à des questions via un frontend, en utilisant plusieurs outils :
 
-Recherche web : DuckDuckGo
+- **Recherche web :**  DuckDuckGo
 
-Recherche encyclopédique : Wikipedia
+- **Recherche encyclopédique :** Wikipedia
 
-Génération de texte : ChatGoogleGenerativeAI
+- **Génération de texte :** ChatGoogleGenerativeAI
 
-Calculs mathématiques : LLMMathChain
+- **Calculs mathématiques :** LLMMathChain
 
 L’objectif de cette version est d’intégrer des garde-fous et une sanitation des entrées utilisateur pour :
 
-Éviter les contenus offensants ou dangereux
+- Éviter les contenus offensants ou dangereux
 
-Nettoyer et sécuriser les entrées utilisateur
+- Nettoyer et sécuriser les entrées utilisateur
 
-Filtrer les sources non fiables
+- Filtrer les sources non fiables
 
-Vérifier les calculs mathématiques avant de renvoyer la réponse
+- Vérifier les calculs mathématiques avant de renvoyer la réponse
 
  ## 2. Structure du projet
