@@ -27,11 +27,15 @@ L’objectif de cette version est d’intégrer des garde-fous et une sanitation
 ### - Créer l’utilitaire de sanitation (utils.py)
 
 - Fonction principale :
+  
   ```python
   sanitize_input(user_input: str) → str
+  
  ```
+
 - Nettoie les balises HTML, supprime les espaces inutiles, limite la longueur.
   **code:**
+
   ```python
   from utils import sanitize_input
   clean_question = sanitize_input(user_question)
