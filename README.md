@@ -34,12 +34,14 @@ L’objectif de cette version est d’intégrer des garde-fous et une sanitation
  ```
 
 - Nettoie les balises HTML, supprime les espaces inutiles, limite la longueur.
+
   **code:**
 
   ```python
   from utils import sanitize_input
   clean_question = sanitize_input(user_question)
    ```
+
 ### - Modifier le backend FastAPI (main.py)
 
 Appeler sanitize_input avant d’envoyer la question à l’agent
@@ -48,7 +50,9 @@ Filtrer le contenu sensible avant de renvoyer la réponse
 
 Gérer les erreurs globalement
 **code:**
+
 ```python
+
 @app.post("/ask")
 def ask_question(data: Question):
     question = sanitize_input(data.question)
@@ -61,15 +65,18 @@ def ask_question(data: Question):
         return {"answer": response}
     except Exception:
         return {"answer": "Désolé, je ne peux pas répondre à cette question pour le moment."}
+
         ```
 ### -Filtrage des sources (tools.py)
 Limiter les résultats DuckDuckGo aux sources fiables (Wikipedia, .edu)
 
 Vérifier les résultats Wikipedia pour le contenu sensible
 **code:**
+
 ```python
 safe_results = safe_duckduckgo_search(query)
 wiki_result = safe_wikipedia_query(query)
+
 ```
 ### - Agent IA avec prompt de sécurité (agent.py)
 Ajout d’un prompt global pour éviter les contenus offensants ou sensibles
@@ -77,10 +84,13 @@ Ajout d’un prompt global pour éviter les contenus offensants ou sensibles
 Validation des calculs mathématiques via LLMMathChain
 
 Gestion des erreurs lors du calcul ou de la génération
+
 **code:**
+
 ```python
   prompt = f"{SECURE_PROMPT}\nQuestion: {question}"
-response = llm.chat(prompt).content
+   response = llm.chat(prompt).content
+
 ```
 ### -Dépendances (requirements.txt)
 fastapi
